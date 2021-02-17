@@ -5,8 +5,7 @@ plugins {
 }
 
 group 'com.gilbert.operations'
-archivesBaseName 'arithmetic2'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -30,9 +29,9 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-//signing {
-//    sign configurations.archives
-//}
+signing {
+    sign configurations.archives
+}
 
 uploadArchives {
     repositories {
@@ -40,25 +39,21 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
+                authentication(userName: 'gilbertparreno', password: '!RFKPBfxZ*Dpw43')
             }
 
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
+                authentication(userName: 'gilbertparreno', password: '!RFKPBfxZ*Dpw43')
             }
 
             pom.project {
-                name 'Example Application'
+                name 'arithmetic2'
                 packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'A application used as an example on how to set up
-                pushing  its components to the Central Repository.'
-                url 'http://www.example.com/example-application'
 
                 scm {
-                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'http://foo.googlecode.com/svn/trunk/'
+                    connection 'scm:git:git://github.com/gilbertparreno/arithmetic2.git'
+                    developerConnection 'scm:git:ssh://github.com:gilbertparreno/arithmetic2.git'
+                    url 'http://github.com/gilbertparreno/arithmetic2'
                 }
 
                 licenses {
@@ -70,7 +65,7 @@ uploadArchives {
 
                 developers {
                     developer {
-                        id 'manfred'
+                        id 'gilbertparreno'
                         name 'Gilbert Parreño'
                         email 'gilbertparreno95@gmail.com'
                     }
